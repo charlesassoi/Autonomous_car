@@ -14,7 +14,8 @@ export class Car{
         this.maxSpeed=3;
         this.controls=new Controls();
     }
-    update(){
+    update(){this.#move()}
+    #move(){
         if(this.controls.forward){
             this.speed+=this.acceleration;
         }

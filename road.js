@@ -28,8 +28,8 @@ draw(ctx){
     
 
     ctx.beginPath();
-    ctx.moveTo(this.left,this.top);
-    ctx.lineTo(this.left,this.bottom);
+    ctx.moveTo(x,this.top);
+    ctx.lineTo(x,this.bottom);
     ctx.stroke();
     }
     /*ctx.beginPath();

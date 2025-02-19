@@ -1,3 +1,5 @@
+import { lerp} from './utils.js';
+
 export class Road{
     constructor(x,width,laneCount=3){
         this.x=x;
@@ -16,14 +18,23 @@ draw(ctx){
     ctx.linewidth=5;
     ctx.strokeStyle="white";
 
+    for(let i=0;i<=this.laneCount;i++){
+        const x=lerp(this.left,this.right,i/this.laneCount);
+    if(i>0 && i<this.laneCount){
+        ctx.setLineDash([20,20]);
+    }else{
+        ctx.setLineDash([]);
+    }
+    
+
     ctx.beginPath();
     ctx.moveTo(this.left,this.top);
     ctx.lineTo(this.left,this.bottom);
     ctx.stroke();
-
-    ctx.beginPath();
+    }
+    /*ctx.beginPath();
     ctx.moveTo(this.right,this.top);
     ctx.lineTo(this.right,this.bottom);
-    ctx.stroke();
+    ctx.stroke();*/
 }
 }

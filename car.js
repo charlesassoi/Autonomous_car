@@ -1,5 +1,5 @@
 import { Controls} from './controls.js';
-
+import { sensor} from './sensor.js';
 
 export class Car{
     constructor(x,y,width,height){
@@ -12,6 +12,8 @@ export class Car{
         this.angle=0;
         this.friction=0.05;
         this.maxSpeed=3;
+
+        this.sensor=new sensor(this);
         this.controls=new Controls();
     }
     update(){this.#move()}

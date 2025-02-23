@@ -1,5 +1,5 @@
 import { Controls} from './controls.js';
-import { sensor} from './sensor.js';
+import { Sensor} from './sensor.js';
 
 export class Car{
     constructor(x,y,width,height){
@@ -13,10 +13,13 @@ export class Car{
         this.friction=0.05;
         this.maxSpeed=3;
 
-        this.sensor=new sensor(this);
+        this.sensor=new Sensor(this);
         this.controls=new Controls();
     }
-    update(){this.#move()}
+    update(){
+        this.#move(),
+        this.sensor.update()
+        }
     #move(){
         if(this.controls.forward){
             this.speed+=this.acceleration;
@@ -56,7 +59,7 @@ export class Car{
     draw(ctx){
         ctx.save();
         ctx.translate(this.x,this.y);
-        ctx.rotate(-this.angle)
+        ctx.rotate(-this.angle);
         ctx.beginPath();
         ctx.rect(
             -this.width/2,
@@ -66,6 +69,7 @@ export class Car{
         );
         ctx.fill();
         ctx.restore();
+        this.sensor.draw(ctx);
     }
 }
 
